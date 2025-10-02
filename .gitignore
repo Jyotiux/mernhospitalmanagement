@@ -1,0 +1,7 @@
+# dependencies
+node_modules/
+
+# optional: OS or editor files
+.DS_Store
+.env
+*.log
