@@ -1,12 +1,10 @@
-// server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const patientsRouter = require('./routes/patients');
 const doctorsRouter = require('./routes/doctors');
-const appoinmentsRouter = require('./routes/appointments')
+const appointmentsRouter = require('./routes/appointments'); 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,20 +13,17 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose.connect(
-    'mongodb://localhost:27017/hospital',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    'mongodb://localhost:27017/hospital');
+
 const connection = mongoose.connection;
-connection.once('open', () =&gt; {
+connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
 });
 
 app.use('/patients', patientsRouter);
 app.use('/doctors', doctorsRouter);
-app.use('/appointments', appoinmentsRouter)
+app.use('/appointments', appointmentsRouter); 
 
-app.listen(PORT, () =&gt; {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
